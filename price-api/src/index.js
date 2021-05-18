@@ -25,4 +25,4 @@ const server = new GraphQLServer({
 });
 
 // Go to http://localhost:4000 to test the API
-server.start(() => console.log('Server running on :4000'));
+server.start(() => console.log('Server running on http://localhost:4000'));

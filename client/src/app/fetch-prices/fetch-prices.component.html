@@ -1,0 +1,9 @@
+<input type="text" [(ngModel)]="currency" (change)="update()" />
+
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error">Error :(</div>
+<div *ngIf="rate">
+  <div>
+    <p>{{ currency }}: {{ rate }} USD</p>
+  </div>
+</div>

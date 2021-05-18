@@ -11,6 +11,7 @@ Full-stack web app.
 ## Stack:
 
 - Angular
+- NodeJS
 - Firebase
 
 ## Demo:
