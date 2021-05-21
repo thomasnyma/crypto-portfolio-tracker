@@ -5,9 +5,19 @@ import { Apollo, gql } from 'apollo-angular';
 // We use the gql tag to parse our query string into a query document
 const GET_PRICE = gql`
   query GetPrice($currency: String!) {
-    exchangeRate(currency: $currency)
+    getCoinInfo(currency: $currency) {
+      name
+      price
+      logo_url
+    }
   }
 `;
+
+interface coin {
+  name: string;
+  price: string;
+  logo_url: string;
+}
 
 @Component({
   selector: 'app-fetch-prices',
@@ -15,33 +25,37 @@ const GET_PRICE = gql`
   styleUrls: ['./fetch-prices.component.scss'],
 })
 export class FetchPricesComponent implements OnInit {
-  rate?: number;
+  coinInfo?: coin[];
   loading = true;
   error: any;
-  currency: string = 'BTC';
+  currency: string = 'BTC,ETH,ADA,LTC,LINK';
 
   private querySubscription: Subscription | undefined;
 
   constructor(private apollo: Apollo) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.update(this.currency);
+  }
 
   ngOnDestroy() {
     this.querySubscription?.unsubscribe();
   }
 
-  update() {
+  update(currency: string) {
     this.querySubscription = this.apollo
       .query<any>({
         query: GET_PRICE,
         variables: {
-          currency: this.currency,
+          currency: currency,
         },
       })
       .subscribe(({ data, loading, error }) => {
         this.loading = loading;
-        this.rate = data?.exchangeRate;
+        this.coinInfo = data.getCoinInfo;
         this.error = error;
       });
   }
 }
+
+// Example search: ETH,LTC,BTC,LINK,XRP,DOGE,ADA

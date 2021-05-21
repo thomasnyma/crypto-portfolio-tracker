@@ -1,1 +1,27 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
+li {
+  display: flex;
+  flex-direction: row;
+}
+
+.img {
+  width: 3rem;
+  width: 3rem;
+  margin: 1rem;
+  display: grid;
+  place-items: center;
+}
+
+img {
+  max-height: 3rem;
+  max-width: 3rem;
+}
+
+p {
+  line-height: 3rem;
+}
