@@ -1,48 +1,40 @@
-<div>
-  <div>
-    <div>
-      <h3>Sign Up</h3>
+<div class="form">
+  <h3>Register</h3>
 
-      <div>
-        <input type="email" placeholder="Email Address" #userEmail required />
-      </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Email Address</mat-label>
+    <input matInput type="email" #userEmail required />
+  </mat-form-field>
 
-      <div>
-        <input type="password" placeholder="Password" #userPwd required />
-      </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" #userPwd required />
+  </mat-form-field>
 
-      <div>
-        <input
-          type="button"
-          value="Sign Up"
-          (click)="authService.SignUp(userEmail.value, userPwd.value)"
-        />
-      </div>
+  <button
+    mat-stroked-button
+    type="button"
+    (click)="authService.SignUp(userEmail.value, userPwd.value)"
+  >
+    Register
+  </button>
 
-      <div>
-        <span class="or"><span class="orInner">Or</span></span>
-      </div>
+  <span>Or</span>
 
-      <!-- Continue with Google -->
-      <div>
-        <button type="button" (click)="authService.GoogleAuth()">
-          Continue with Google
-        </button>
-      </div>
+  <!-- Continue with Google -->
+  <button mat-stroked-button type="button" (click)="authService.GoogleAuth()">
+    Continue with Google
+    <mat-icon fontSet="fontawesome" fontIcon="fa-google"></mat-icon>
+  </button>
 
-      <!-- Continue with Facebook -->
-      <div>
-        <button type="button" (click)="authService.FacebookAuth()">
-          Continue with Facebook
-        </button>
-      </div>
-    </div>
+  <!-- Continue with Facebook -->
+  <button mat-stroked-button type="button" (click)="authService.FacebookAuth()">
+    Continue with Facebook
+    <mat-icon fontSet="fontawesome" fontIcon="fa-facebook"></mat-icon>
+  </button>
 
-    <div>
-      <span
-        >Already have an account?
-        <span routerLink="/sign-in">Log In</span></span
-      >
-    </div>
-  </div>
+  <span
+    >Already have an account?
+    <button mat-button routerLink="/sign-in">Log In</button></span
+  >
 </div>
