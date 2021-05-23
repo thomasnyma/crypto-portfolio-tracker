@@ -1,0 +1,48 @@
+<div>
+  <div>
+    <div>
+      <h3>Sign Up</h3>
+
+      <div>
+        <input type="email" placeholder="Email Address" #userEmail required />
+      </div>
+
+      <div>
+        <input type="password" placeholder="Password" #userPwd required />
+      </div>
+
+      <div>
+        <input
+          type="button"
+          value="Sign Up"
+          (click)="authService.SignUp(userEmail.value, userPwd.value)"
+        />
+      </div>
+
+      <div>
+        <span class="or"><span class="orInner">Or</span></span>
+      </div>
+
+      <!-- Continue with Google -->
+      <div>
+        <button type="button" (click)="authService.GoogleAuth()">
+          Continue with Google
+        </button>
+      </div>
+
+      <!-- Continue with Facebook -->
+      <div>
+        <button type="button" (click)="authService.FacebookAuth()">
+          Continue with Facebook
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <span
+        >Already have an account?
+        <span routerLink="/sign-in">Log In</span></span
+      >
+    </div>
+  </div>
+</div>
