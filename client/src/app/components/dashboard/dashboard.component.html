@@ -1,24 +1,11 @@
-<a (click)="authService.SignOut()"> Log out </a>
+<div>
+  <h1>DashBoard</h1>
 
-<h1>User Profile</h1>
-
-<div *ngIf="authService.userData as user">
-  <img
-    src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
-    alt="{{ user.displayName }}"
-  />
-
-  <h1>
-    Hello:
-    <strong>{{ user.displayName ? user.displayName : "User" }}</strong>
-  </h1>
-  <p>
-    User ID: <strong>{{ user.uid }}</strong>
-  </p>
-  <p>
-    Email: <strong>{{ user.email }}</strong>
-  </p>
-  <p>
-    Email Verified: <strong>{{ user.emailVerified }}</strong>
-  </p>
+  <div *ngIf="authService.userData as user">
+    <h1>
+      Hello:
+      <strong>{{ user.displayName ? user.displayName : "User" }}</strong>
+    </h1>
+  </div>
+  <app-fetch-prices></app-fetch-prices>
 </div>

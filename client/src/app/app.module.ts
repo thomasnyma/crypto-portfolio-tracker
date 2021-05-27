@@ -20,19 +20,40 @@ import { AppComponent } from './app.component';
 import { FetchPricesComponent } from './components/fetch-prices/fetch-prices.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 
 // Firebase services + enviorment module
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 // Auth service
+import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
 import { AuthService } from './shared/services/auth.service';
+import { ProfileComponent } from './components/profile/profile.component';
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'redirect',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    {
+      scopes: ['public_profile', 'email'],
+      customParameters: {
+        auth_type: 'reauthenticate',
+      },
+      provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    },
+    {
+      requireDisplayName: true,
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    },
+  ],
+  signInSuccessUrl: 'http://localhost:4200/dashboard',
+  tosUrl: '<your-tos-link>',
+  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
+};
 
 @NgModule({
   declarations: [
@@ -40,10 +61,8 @@ import { AuthService } from './shared/services/auth.service';
     FetchPricesComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent,
-    VerifyEmailComponent,
     NavigationComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +73,7 @@ import { AuthService } from './shared/services/auth.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
@@ -64,7 +84,7 @@ import { AuthService } from './shared/services/auth.service';
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [AuthService],
+  providers: [AngularFireAuth, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {
