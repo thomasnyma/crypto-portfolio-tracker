@@ -22,6 +22,9 @@ img {
   max-width: 3rem;
 }
 
-p {
+.coin-info {
   line-height: 3rem;
+  margin: 0;
+  display: grid;
+  place-items: center;
 }

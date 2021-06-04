@@ -1,17 +1,23 @@
-<mat-toolbar color="primary">
-  <button
-    *ngIf="auth.isLoggedIn"
-    type="button"
-    aria-label="Toggle sidenav"
-    mat-icon-button
-    (click)="drawer.toggle()"
-  >
-    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-  </button>
-  <span>Crypto Portfolio Tracker</span>
-  <button *ngIf="auth.isLoggedIn" mat-button (click)="auth.signOut()">
-    Sign out
-  </button>
+<mat-toolbar class="main-toolbar" color="primary">
+  <div class="nav-left">
+    <button
+      *ngIf="auth.isLoggedIn"
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()"
+    >
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+  </div>
+
+  <span class="nav-mid">Crypto Portfolio Tracker</span>
+
+  <div class="nav-right">
+    <button *ngIf="auth.isLoggedIn" mat-button (click)="auth.signOut()">
+      Sign out
+    </button>
+  </div>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
@@ -22,7 +28,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="false"
   >
-    <mat-toolbar>Menu</mat-toolbar>
+    <!-- <mat-toolbar>Menu</mat-toolbar> -->
     <mat-nav-list>
       <a mat-list-item routerLink="dashboard">Dashboard</a>
       <a mat-list-item routerLink="profile">Profile</a>

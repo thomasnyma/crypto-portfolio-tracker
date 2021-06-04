@@ -11,6 +11,19 @@
   width: 200px;
 }
 
+.main-toolbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  .nav-mid {
+    text-align: center;
+  }
+
+  .nav-right {
+    text-align: right;
+  }
+}
+
 .sidenav .mat-toolbar {
   background: inherit;
 }
