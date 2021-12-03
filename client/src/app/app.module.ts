@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 // Components
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
 import { AuthService } from './shared/services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CoinInfoComponent } from './components/coin-info/coin-info.component';
+import { SearchComponent } from './components/search/search.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'redirect',
@@ -66,6 +68,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     NavigationComponent,
     ProfileComponent,
     CoinInfoComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatAutocompleteModule
   ],
   providers: [AngularFireAuth, AuthService],
   bootstrap: [AppComponent],
