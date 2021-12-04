@@ -19,8 +19,8 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.filteredCoins = this.search.valueChanges.pipe(
       startWith(''),
-      map(value => (typeof value === 'string' ? value : value.name)),
-      map(name => (name ? this._filter(name) : this.coins.slice())),
+      map(value => (typeof value === 'string' ? value : value.symbol)),
+      map(symbol => (symbol ? this._filter(symbol) : this.coins.slice())),
     )
   }
 
@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
   }
 
   private _filter(coin: string): Coin[] {
-    const filterValue = coin.toUpperCase();
-    return this.coins.filter(coin => coin.name.toUpperCase().indexOf(filterValue));
+    const filterValue = coin.toLowerCase();
+    return this.coins.filter(coin => coin.symbol.toLowerCase().includes(filterValue));
   }
 }
