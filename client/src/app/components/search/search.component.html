@@ -3,8 +3,8 @@
     <mat-label>Search</mat-label>
     <input type="text" matInput [formControl]="search" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let coin of filteredCoins | async" [value]="coin">
-        {{coin.name}}
+      <mat-option *ngFor="let coin of filteredCoins | async" [value]="coin.symbol">
+        {{coin.name}} - {{coin.symbol}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
