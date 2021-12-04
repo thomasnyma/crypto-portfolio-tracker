@@ -9,6 +9,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CoinInfoComponent } from './components/coin-info/coin-info.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'coin/:id',
+    component: CoinInfoComponent,
     canActivate: [AuthGuard],
   },
 ];

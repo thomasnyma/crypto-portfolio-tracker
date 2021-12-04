@@ -14,6 +14,7 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 // Components
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { environment } from '../environments/environment';
 import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
 import { AuthService } from './shared/services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CoinInfoComponent } from './components/coin-info/coin-info.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'redirect',
@@ -63,6 +65,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     LoginComponent,
     NavigationComponent,
     ProfileComponent,
+    CoinInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +86,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
   ],
   providers: [AngularFireAuth, AuthService],
   bootstrap: [AppComponent],

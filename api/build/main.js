@@ -183,15 +183,11 @@ class NomicsConnector {
     // 	preFetch: 0.05, // pre-fetch 15s before expiration
     // 	promise: 'then', // handle async
     // });
-
-    this.getCoinInfoCached = memoizee__WEBPACK_IMPORTED_MODULE_1___default()(this.getCoinInfo, {
-      maxAge: 300000,
-      // 5 minutes til cache expiration
-      preFetch: 0.05,
-      // pre-fetch 15s before expiration
-      promise: 'then' // handle async
-
-    });
+    // this.getCoinInfoCached(currency) = memoize(this.getCoinInfo(currency), {
+    // 	maxAge: 300000, // 5 minutes til cache expiration
+    // 	preFetch: 0.05, // pre-fetch 15s before expiration
+    // 	promise: 'then', // handle async
+    // });
   } // async getPrices() {
   // 	const res = await this.client('/prices');
   // 	return res.data;
@@ -231,7 +227,7 @@ class NomicsConnector {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\thoma\Documents\GitHub\crypto-portfolio-tracker\price-api\src/index.js */"./src/index.js");
+module.exports = __webpack_require__(/*! C:\Users\thoma\Documents\GitHub\crypto-portfolio-tracker\api\src/index.js */"./src/index.js");
 
 
 /***/ }),
