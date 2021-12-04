@@ -24,8 +24,8 @@ export class SearchComponent implements OnInit {
     )
   }
 
-  displayFn(coin?: Coin): string {
-    return coin && coin.name ? coin.name : '';
+  displayFn(coin: Coin): string {
+    return coin && coin.symbol ? coin.symbol : '';
   }
 
   private _filter(coin: string): Coin[] {
