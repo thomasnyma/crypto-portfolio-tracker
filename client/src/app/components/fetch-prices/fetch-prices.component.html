@@ -1,7 +1,6 @@
 <input type="text" [(ngModel)]="currency" (change)="update(currency)" />
 
 <div *ngIf="loading">Loading...</div>
-<div *ngIf="error">Error :(</div>
 <ul *ngIf="coinInfo">
   <li *ngFor="let coin of coinInfo">
     <div class="img">
