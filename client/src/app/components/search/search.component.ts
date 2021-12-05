@@ -11,7 +11,7 @@ import { Coin } from 'src/app/shared/models/coin.model';
 })
 export class SearchComponent implements OnInit {
   search = new FormControl();
-  coins: Coin[] = [{ name: 'Bitcoin', symbol: 'BTC' }, { name: 'Ethereum', symbol: 'ETH' }, { name: 'Litecoin', symbol: 'LTC' }];
+  coins!: Coin[];
   filteredCoins!: Observable<Coin[]>;
 
   constructor() { }
