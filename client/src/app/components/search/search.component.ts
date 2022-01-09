@@ -1,3 +1,4 @@
+import { CoinInfoService } from './../../shared/services/coin-info.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -10,11 +11,12 @@ import { Coin } from 'src/app/shared/models/coin.model';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  searchText: string = '';
   search = new FormControl();
   coins!: Coin[];
   filteredCoins!: Observable<Coin[]>;
 
-  constructor() { }
+  constructor(private coinService: CoinInfoService) { }
 
   ngOnInit(): void {
     this.filteredCoins = this.search.valueChanges.pipe(
@@ -26,6 +28,10 @@ export class SearchComponent implements OnInit {
 
   displayFn(coin: Coin): string {
     return coin && coin.symbol ? coin.symbol : '';
+  }
+
+  getCoins() {
+    this.coinService.findAll(this.searchText).subscribe(coins => this.coins = coins.getCoinInfo)
   }
 
   private _filter(coin: string): Coin[] {
