@@ -1,7 +1,8 @@
 import { GraphQLServer } from 'graphql-yoga';
+import { CronJob } from 'cron';
+import admin from 'firebase-admin';
+import { environment } from './environment/environment';
 import NomicsConnector from './nomicsConnector';
-
-const NOMICS_API_KEY = '656168ea65bbcbbd4b425c89446b2ed7';
 
 const typeDefs = `
   type Coin {
@@ -48,9 +49,37 @@ const server = new GraphQLServer({
 	typeDefs,
 	resolvers,
 	context: {
-		nomics: new NomicsConnector(NOMICS_API_KEY),
+		nomics: new NomicsConnector(environment.nomicsApiKey),
 	},
 });
 
+// Initialize Firebase
+admin.initializeApp({
+  credential: admin.credential.cert(environment.serviceAccountKey),
+})
+const db = admin.firestore();
+
+const nomics = new NomicsConnector(environment.nomicsApiKey);
+
+const updateCoins = async () => {
+  const allCoins = await nomics.getTopCoins();
+  const topCoins = allCoins.slice(0, 500);
+
+  topCoins.forEach(async element => {
+    await db.collection('coins').doc(element.id).set(element);
+  });
+  
+  return console.log('coins updated!');
+};
+
+// Cron job to update the data every minute
+// var job = new CronJob('* * * * *', () => {
+//   console.log('Updating data...');
+//   updateCoins();
+// }, null, true, 'Europe/Copenhagen');
+// job.start();
+
 // Go to http://localhost:4000 to test the API
 server.start(() => console.log('Server running on http://localhost:4000'));
+
+// updateCoins();
