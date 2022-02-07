@@ -43,6 +43,20 @@ class NomicsConnector {
 		return res.data;
 	}
 
+	async getAllCoins() {
+		const res = await this.client('/currencies', {
+			params: { attributes: 'id,name,logo_url' },
+		});
+		return res.data;
+	}
+
+	async getTopCoins() {
+		const res = await this.client('/currencies/ticker', {
+			params: { sort: 'rank', attributes: 'id,name,logo_url' },
+		});
+		return res.data;
+	}
+
 	// async getPrice(currency) {
 	// 	const pricesByCurrency = await this.getPricesByCurrencyCached();
 	// 	return pricesByCurrency[currency];

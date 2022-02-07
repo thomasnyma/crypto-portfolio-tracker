@@ -13,6 +13,8 @@
 	"dependencies": {
 		"axios": "^0.21.1",
 		"backpack-core": "^0.8.4",
+		"cron": "^1.8.2",
+		"firebase-admin": "^10.0.1",
 		"graphql-yoga": "^1.18.3",
 		"memoizee": "^0.4.15"
 	}
