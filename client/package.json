@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~11.2.12",
     "@angular/router": "~11.2.12",
     "@apollo/client": "^3.0.0",
+    "algoliasearch": "^4.12.1",
+    "angular-instantsearch": "^4.1.0",
     "apollo-angular": "^2.4.0",
     "firebase": "^8.6.2",
     "firebaseui": "^4.8.0",

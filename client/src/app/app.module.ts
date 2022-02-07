@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -15,6 +15,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NgAisModule } from 'angular-instantsearch';
 
 // Components
 import { AppComponent } from './app.component';
@@ -22,6 +24,8 @@ import { FetchPricesComponent } from './components/fetch-prices/fetch-prices.com
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CoinInfoComponent } from './components/coin-info/coin-info.component';
 
 // Firebase services + enviorment module
 import { AngularFireModule } from '@angular/fire';
@@ -32,8 +36,7 @@ import { environment } from '../environments/environment';
 // Auth service
 import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
 import { AuthService } from './shared/services/auth.service';
-import { ProfileComponent } from './components/profile/profile.component';
-import { CoinInfoComponent } from './components/coin-info/coin-info.component';
+import { SearchComponent } from './components/search/search.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'redirect',
@@ -66,6 +69,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     NavigationComponent,
     ProfileComponent,
     CoinInfoComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +91,9 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    NgAisModule.forRoot()
   ],
   providers: [AngularFireAuth, AuthService],
   bootstrap: [AppComponent],

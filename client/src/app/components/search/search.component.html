@@ -1,0 +1,12 @@
+<ais-instantsearch [config]="config">
+    <ais-search-box class="search-box"></ais-search-box>
+    <ais-hits>
+        <ng-template let-hits="hits">
+            <ul class="search-list">
+                <li *ngFor="let hit of hits" class="search-item" (click)="NavigateToCoin(hit.currency)">
+                {{hit.name}} - {{hit.currency}}
+                </li>
+            </ul>
+        </ng-template>
+    </ais-hits>
+</ais-instantsearch>
