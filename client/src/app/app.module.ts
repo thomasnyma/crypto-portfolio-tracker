@@ -36,6 +36,7 @@ import { environment } from '../environments/environment';
 // Auth service
 import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
 import { AuthService } from './shared/services/auth.service';
+import { SearchComponent } from './components/search/search.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'redirect',
@@ -68,6 +69,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     NavigationComponent,
     ProfileComponent,
     CoinInfoComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

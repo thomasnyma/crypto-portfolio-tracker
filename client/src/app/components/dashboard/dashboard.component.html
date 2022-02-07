@@ -7,19 +7,6 @@
       <strong>{{ user.displayName ? user.displayName : "User" }}</strong>
     </h1>
   </div>
-  <app-fetch-prices></app-fetch-prices>
-  <!-- <app-search></app-search> -->
-  <ais-instantsearch [config]="config">
-    <ais-search-box></ais-search-box>
-    <ais-hits>
-      <ng-template let-hits="hits">
-        <ul class="ais-Hits-list">
-          <li *ngFor="let hit of hits" class="ais-Hits-item">
-           {{hit.name}} - {{hit.currency}}
-          </li>
-        </ul>
-      </ng-template>
-    </ais-hits>
-  </ais-instantsearch>
-  
+  <!-- <app-fetch-prices></app-fetch-prices> -->
+  <app-search></app-search>
 </div>
