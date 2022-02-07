@@ -4,7 +4,7 @@
 /dist
 /tmp
 /out-tsc
-/build
+build/
 # Only exists if Bazel was run
 /bazel-out
 
@@ -41,7 +41,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-/src/environments
+environments/
 
 # System Files
 .DS_Store
