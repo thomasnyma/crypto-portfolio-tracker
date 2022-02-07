@@ -1,7 +1,7 @@
 import { GraphQLServer } from 'graphql-yoga';
 import { CronJob } from 'cron';
 import admin from 'firebase-admin';
-import { environment } from './environment/environment';
+import { environment } from './environments/environment';
 import NomicsConnector from './nomicsConnector';
 
 const typeDefs = `
