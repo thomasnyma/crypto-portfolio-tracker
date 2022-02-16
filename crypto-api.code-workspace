@@ -4,5 +4,32 @@
       "path": "api"
     }
   ],
-  "settings": {}
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#fa1b49",
+      "activityBar.activeBorder": "#155e02",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBarBadge.background": "#155e02",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "sash.hoverBorder": "#fa1b49",
+      "statusBar.background": "#dd0531",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#fa1b49",
+      "statusBarItem.remoteBackground": "#dd0531",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "titleBar.activeBackground": "#dd0531",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#dd053199",
+      "titleBar.inactiveForeground": "#e7e7e799",
+      "activityBar.background": "#fa1b49",
+      "activityBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#dd0531",
+    "powershell.codeFormatting.useConstantStrings": true,
+    "prettier.singleQuote": true
+  }
 }

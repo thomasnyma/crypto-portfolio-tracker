@@ -39,24 +39,24 @@ const typeDefs = `
 `;
 
 const resolvers = {
-	Query: {
-		getCoinInfo: (root, variables, context) =>
-			context.nomics.getCoinInfo(variables.currency),
-	},
+  Query: {
+    getCoinInfo: (root, variables, context) =>
+      context.nomics.getCoinInfo(variables.currency),
+  },
 };
 
 const server = new GraphQLServer({
-	typeDefs,
-	resolvers,
-	context: {
-		nomics: new NomicsConnector(environment.nomicsApiKey),
-	},
+  typeDefs,
+  resolvers,
+  context: {
+    nomics: new NomicsConnector(environment.nomicsApiKey),
+  },
 });
 
 // Initialize Firebase
 admin.initializeApp({
   credential: admin.credential.cert(environment.serviceAccountKey),
-})
+});
 const db = admin.firestore();
 
 const nomics = new NomicsConnector(environment.nomicsApiKey);
@@ -65,10 +65,10 @@ const updateCoins = async () => {
   const allCoins = await nomics.getTopCoins();
   const topCoins = allCoins.slice(0, 500);
 
-  topCoins.forEach(async element => {
+  topCoins.forEach(async (element) => {
     await db.collection('coins').doc(element.id).set(element);
   });
-  
+
   return console.log('coins updated!');
 };
 
