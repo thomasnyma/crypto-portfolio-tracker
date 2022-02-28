@@ -1,18 +1,8 @@
-@import "~firebaseui/dist/firebaseui.css";
+@use "themes" as *;
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+@use "@nebular/theme/styles/globals" as *;
 
-ul,
-ul li,
-ul ul li {
-  margin: 0;
-  padding: 0;
-  text-indent: 0;
-  list-style-type: none;
-  padding-inline-start: 0;
+@include nb-install() {
+  @include nb-theme-global();
 }
+/* You can add global styles to this file, and also import other style files */

@@ -1,1 +1,25 @@
-<app-navigation></app-navigation>
+<nb-layout>
+  <nb-layout-header fixed>
+    <h2>Crypto Portfolio Tracker</h2>
+    <nb-user
+      *ngIf="isAuthenticated"
+      size="medium"
+      [name]="user?.name"
+      [picture]="user?.picture"
+      [nbContextMenu]="items"
+      nbContextMenuTrigger="hover"
+    ></nb-user>
+  </nb-layout-header>
+
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+    <span>
+      Support:
+      <a href="mailto:thomasmaneschijn@gmail.com">thomasmaneschijn@gmail.com</a>
+      <nb-icon icon="heart-outline"></nb-icon
+    ></span>
+  </nb-layout-footer>
+</nb-layout>

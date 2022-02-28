@@ -1,105 +1,132 @@
-// Modules
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { BrowserModule } from '@angular/platform-browser';
+import { NbAuthModule } from '@nebular/auth';
+import {
+  NbFirebaseAuthModule,
+  NbFirebaseGoogleStrategy,
+  NbFirebasePasswordStrategy,
+} from '@nebular/firebase-auth';
+
 import { AppRoutingModule } from './app-routing.module';
-import { GraphQLModule } from './graphql.module';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { NgAisModule } from 'angular-instantsearch';
 
-// Components
 import { AppComponent } from './app.component';
-import { FetchPricesComponent } from './components/fetch-prices/fetch-prices.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { CoinInfoComponent } from './components/coin-info/coin-info.component';
+import { ProfileComponent } from './profile/profile.component';
 
-// Firebase services + enviorment module
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
+import { environment } from 'src/environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbIconModule,
+  NbUserModule,
+  NbMenuModule,
+  NbContextMenuModule,
+  NbButtonModule,
+} from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
-// Auth service
-import { firebase, firebaseui, FirebaseUIModule } from 'firebaseui-angular';
-import { AuthService } from './shared/services/auth.service';
-import { SearchComponent } from './components/search/search.component';
-
-const firebaseUiAuthConfig: firebaseui.auth.Config = {
-  signInFlow: 'redirect',
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    {
-      scopes: ['public_profile', 'email'],
-      customParameters: {
-        auth_type: 'reauthenticate',
+const authConfig = {
+  forms: {
+    login: {
+      strategy: 'password',
+      rememberMe: true,
+      socialLinks: [],
+    },
+    register: {
+      strategy: 'password',
+      terms: true,
+      socialLinks: [],
+    },
+    logout: {
+      strategy: 'password',
+    },
+    requestPassword: {
+      strategy: 'password',
+      socialLinks: [],
+    },
+    resetPassword: {
+      strategy: 'password',
+      socialLinks: [],
+    },
+    validation: {
+      password: {
+        required: true,
+        minLength: 6,
+        maxLength: 50,
       },
-      provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      email: {
+        required: true,
+      },
+      fullName: {
+        required: true,
+        minLength: 4,
+        maxLength: 50,
+      },
     },
-    {
-      requireDisplayName: true,
-      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    },
+  },
+  strategies: [
+    NbFirebasePasswordStrategy.setup({
+      name: 'password',
+      login: {
+        redirect: {
+          success: 'profile',
+        },
+      },
+      register: {
+        redirect: {
+          success: 'profile',
+        },
+      },
+      logout: {
+        redirect: {
+          success: 'auth/login',
+        },
+      },
+      requestPassword: {
+        redirect: {
+          success: 'auth/login',
+        },
+      },
+      resetPassword: {
+        redirect: {
+          success: 'auth/login',
+        },
+      },
+    }),
+    NbFirebaseGoogleStrategy.setup({
+      name: 'google',
+    }),
   ],
-  signInSuccessUrl: 'http://localhost:4200/dashboard',
-  tosUrl: '<your-tos-link>',
-  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
-  credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
 };
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FetchPricesComponent,
-    DashboardComponent,
-    LoginComponent,
-    NavigationComponent,
-    ProfileComponent,
-    CoinInfoComponent,
-    SearchComponent,
-  ],
+  declarations: [AppComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GraphQLModule,
-    HttpClientModule,
-    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    NbFirebaseAuthModule,
+    NbAuthModule.forRoot(authConfig),
     BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    NgAisModule.forRoot()
+    NbThemeModule.forRoot({
+      name: window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'default',
+    }),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbIconModule,
+    NbUserModule,
+    NbMenuModule.forRoot(),
+    NbContextMenuModule,
+    NbButtonModule,
   ],
-  providers: [AngularFireAuth, AuthService],
+  providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(matIconRegistry: MatIconRegistry) {
-    matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
-  }
-}
+export class AppModule {}
