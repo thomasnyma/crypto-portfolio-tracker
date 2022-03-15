@@ -1,0 +1,48 @@
+<div [class]="cx()">
+  <form [class]="cx('form')" novalidate (submit)="handleSubmit($event)">
+    <nb-form-field>
+      <input
+        nbInput
+        [class]="cx('input')"
+        autocapitalize="off"
+        autocorrect="off"
+        placeholder="{{ placeholder }}"
+        role="textbox"
+        spellcheck="false"
+        type="text"
+        [value]="state.query"
+        (input)="handleChange($any($event.target).value)"
+        (focus)="focus.emit($event)"
+        (blur)="blur.emit($event)"
+        #searchBox
+      />
+      <button
+        nbSuffix
+        nbButton
+        ghost
+        [class]="cx('submit')"
+        type="submit"
+        title="{{ submitTitle }}"
+        *ngIf="state.query === ''"
+      >
+        <nb-icon icon="search-outline">
+          pack="eva" [attr.aria-label]="'search'">
+        </nb-icon>
+      </button>
+      <button
+        nbSuffix
+        nbButton
+        ghost
+        [class]="cx('reset')"
+        type="reset"
+        title="{{ resetTitle }}"
+        (click)="handleReset($event)"
+        *ngIf="state.query !== ''"
+      >
+        <nb-icon icon="close-outline">
+          pack="eva" [attr.aria-label]="'reset'">
+        </nb-icon>
+      </button>
+    </nb-form-field>
+  </form>
+</div>

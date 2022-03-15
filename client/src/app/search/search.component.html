@@ -1,0 +1,25 @@
+<ais-instantsearch [config]="searchConfig">
+  <app-search-box class="search-box"></app-search-box>
+  <ais-hits>
+    <ng-template let-hits="hits">
+      <ul class="search-list">
+        <li
+          *ngFor="let hit of hits"
+          class="search-item"
+          (click)="NavigateToCoin(hit.currency)"
+        >
+          {{ hit.name }} - {{ hit.currency }}
+        </li>
+      </ul>
+    </ng-template>
+  </ais-hits>
+</ais-instantsearch>
+
+<!-- <nb-form-field>
+  <input type="text" nbInput />
+  <button nbSuffix nbButton ghost (click)="Search()">
+    <nb-icon icon="search-outline">
+      pack="eva" [attr.aria-label]="'search'">
+    </nb-icon>
+  </button>
+</nb-form-field> -->

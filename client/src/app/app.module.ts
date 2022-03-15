@@ -9,13 +9,6 @@ import {
   NbFirebaseGoogleStrategy,
   NbFirebasePasswordStrategy,
 } from '@nebular/firebase-auth';
-
-import { AppRoutingModule } from './app-routing.module';
-
-import { AppComponent } from './app.component';
-import { ProfileComponent } from './profile/profile.component';
-
-import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   NbThemeModule,
@@ -25,8 +18,20 @@ import {
   NbMenuModule,
   NbContextMenuModule,
   NbButtonModule,
+  NbFormFieldModule,
+  NbInputModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NgAisModule } from 'angular-instantsearch';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SearchComponent } from './search/search.component';
+
+import { environment } from 'src/environments/environment';
+import { SearchBoxComponent } from './search/search-box/search-box.component';
 
 const authConfig = {
   forms: {
@@ -103,7 +108,13 @@ const authConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent, ProfileComponent],
+  declarations: [
+    AppComponent,
+    ProfileComponent,
+    SearchComponent,
+    DashboardComponent,
+    SearchBoxComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -121,10 +132,13 @@ const authConfig = {
     NbLayoutModule,
     NbEvaIconsModule,
     NbIconModule,
+    NbInputModule,
     NbUserModule,
     NbMenuModule.forRoot(),
     NbContextMenuModule,
     NbButtonModule,
+    NbFormFieldModule,
+    NgAisModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
