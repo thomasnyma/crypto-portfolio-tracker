@@ -5,7 +5,6 @@ import {
   forwardRef,
   Inject,
   Input,
-  OnInit,
   Optional,
   Output,
   ViewChild,
@@ -20,6 +19,8 @@ import {
 } from 'instantsearch.js/es/connectors/search-box/connectSearchBox';
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import { noop } from 'rxjs';
+import { Router } from '@angular/router';
+import { NbPopoverDirective } from '@nebular/theme';
 
 @Component({
   selector: 'app-search-box',
@@ -30,6 +31,8 @@ export class SearchBoxComponent extends TypedBaseWidget<
   SearchBoxWidgetDescription,
   SearchBoxConnectorParams
 > {
+  @ViewChild(NbPopoverDirective)
+  popover!: NbPopoverDirective;
   @ViewChild('searchBox', { static: false })
   searchBox!: ElementRef;
   @Input() public placeholder: string = 'Search';
@@ -37,6 +40,7 @@ export class SearchBoxComponent extends TypedBaseWidget<
   @Input() public resetTitle: string = 'Reset';
   @Input() public searchAsYouType: boolean = true;
   @Input() public autofocus: boolean = false;
+  @Input() public hits: any[] = [];
 
   // Output events
   // form
@@ -60,7 +64,8 @@ export class SearchBoxComponent extends TypedBaseWidget<
     @Optional()
     public parentIndex: NgAisIndex,
     @Inject(forwardRef(() => NgAisInstantSearch))
-    public instantSearchInstance: NgAisInstantSearch
+    public instantSearchInstance: NgAisInstantSearch,
+    public router: Router
   ) {
     super('SearchBox');
     this.createWidget(connectSearchBox, {});
@@ -96,5 +101,10 @@ export class SearchBoxComponent extends TypedBaseWidget<
 
     // reset search
     this.state.refine('');
+  }
+
+  public NavigateToCoin(coinId: any) {
+    this.router.navigate([`coin/${coinId}`]);
+    this.popover.hide();
   }
 }

@@ -69,7 +69,7 @@ const updateCoins = async () => {
     await db.collection('coins').doc(element.id).set(element);
   });
 
-  return console.log('coins updated!');
+  return console.log(`Updated ${topCoins.length} coins`);
 };
 
 // Cron job to update the data every minute
@@ -82,4 +82,4 @@ const updateCoins = async () => {
 // Go to http://localhost:4000 to test the API
 server.start(() => console.log('Server running on http://localhost:4000'));
 
-// updateCoins();
+updateCoins();

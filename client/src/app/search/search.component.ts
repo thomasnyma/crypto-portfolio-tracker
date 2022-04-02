@@ -19,15 +19,7 @@ export class SearchComponent implements OnInit {
     searchClient,
   };
 
-  constructor(public router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  Search() {
-    console.log('Performed search');
-  }
-
-  NavigateToCoin(coinId: number) {
-    this.router.navigate([`coin/${coinId}`]);
-  }
 }

@@ -1,6 +1,11 @@
 <div [class]="cx()">
   <form [class]="cx('form')" novalidate (submit)="handleSubmit($event)">
-    <nb-form-field>
+    <nb-form-field
+      [nbPopover]="templateRef"
+      nbPopoverPlacement="bottom"
+      nbPopoverAdjustment="noop"
+      nbPopoverTrigger="focus"
+    >
       <input
         nbInput
         [class]="cx('input')"
@@ -46,3 +51,15 @@
     </nb-form-field>
   </form>
 </div>
+
+<ng-template #templateRef>
+  <nb-list>
+    <nb-list-item
+      style="cursor: pointer"
+      *ngFor="let hit of hits"
+      (click)="NavigateToCoin(hit.currency)"
+      ><img class="coin-logo" [src]="hit.logo_url" [alt]="hit.name" />
+      {{ hit.currency }} - {{ hit.name }}</nb-list-item
+    >
+  </nb-list>
+</ng-template>

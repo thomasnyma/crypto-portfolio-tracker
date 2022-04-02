@@ -20,6 +20,9 @@ import {
   NbButtonModule,
   NbFormFieldModule,
   NbInputModule,
+  NbPopoverModule,
+  NbCardModule,
+  NbListModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgAisModule } from 'angular-instantsearch';
@@ -32,6 +35,8 @@ import { SearchComponent } from './search/search.component';
 
 import { environment } from 'src/environments/environment';
 import { SearchBoxComponent } from './search/search-box/search-box.component';
+import { SearchHitsComponent } from './search/search-hits/search-hits.component';
+import { CoinInfoComponent } from './coin-info/coin-info.component';
 
 const authConfig = {
   forms: {
@@ -114,6 +119,8 @@ const authConfig = {
     SearchComponent,
     DashboardComponent,
     SearchBoxComponent,
+    SearchHitsComponent,
+    CoinInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,6 +145,9 @@ const authConfig = {
     NbContextMenuModule,
     NbButtonModule,
     NbFormFieldModule,
+    NbPopoverModule,
+    NbCardModule,
+    NbListModule,
     NgAisModule.forRoot(),
   ],
   providers: [],
