@@ -1,6 +1,6 @@
 import { GraphQLServer } from 'graphql-yoga';
-import { CronJob } from 'cron';
-import admin from 'firebase-admin';
+// import { CronJob } from 'cron';
+// import admin from 'firebase-admin';
 import { environment } from './environments/environment';
 import NomicsConnector from './nomicsConnector';
 
@@ -34,7 +34,7 @@ const typeDefs = `
   }
 
   type Query {
-	  getCoinInfo(currency: String!): [Coin]
+	  getCoinInfo(currency: String!): Coin
   }
 `;
 
@@ -54,23 +54,23 @@ const server = new GraphQLServer({
 });
 
 // Initialize Firebase
-admin.initializeApp({
-  credential: admin.credential.cert(environment.serviceAccountKey),
-});
-const db = admin.firestore();
+// admin.initializeApp({
+//   credential: admin.credential.cert(environment.serviceAccountKey),
+// });
+// const db = admin.firestore();
 
-const nomics = new NomicsConnector(environment.nomicsApiKey);
+// const nomics = new NomicsConnector(environment.nomicsApiKey);
 
-const updateCoins = async () => {
-  const allCoins = await nomics.getTopCoins();
-  const topCoins = allCoins.slice(0, 500);
+// const updateCoins = async () => {
+//   const allCoins = await nomics.getTopCoins();
+//   const topCoins = allCoins.slice(0, 500);
 
-  topCoins.forEach(async (element) => {
-    await db.collection('coins').doc(element.id).set(element);
-  });
+//   topCoins.forEach(async (element) => {
+//     await db.collection('coins').doc(element.id).set(element);
+//   });
 
-  return console.log(`Updated ${topCoins.length} coins`);
-};
+//   return console.log(`Updated ${topCoins.length} coins`);
+// };
 
 // Cron job to update the data every minute
 // var job = new CronJob('* * * * *', () => {
@@ -82,4 +82,4 @@ const updateCoins = async () => {
 // Go to http://localhost:4000 to test the API
 server.start(() => console.log('Server running on http://localhost:4000'));
 
-updateCoins();
+// updateCoins();

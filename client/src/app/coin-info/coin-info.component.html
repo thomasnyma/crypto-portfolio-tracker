@@ -1,1 +1,13 @@
-<p>coin-info works!</p>
+<nb-card>
+  <nb-card-header
+    ><img class="coin-logo" [src]="coin?.logo_url" alt="Logo" />
+    <h3>{{ coin?.name }}</h3>
+    <span>${{ coin?.price }}</span>
+  </nb-card-header>
+  <nb-card-body>
+    <span><strong>Rank:</strong> {{ coin?.rank }}</span
+    ><br />
+    <span><strong>Market cap:</strong> {{ coin?.market_cap }}</span>
+  </nb-card-body>
+  <!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
+</nb-card>

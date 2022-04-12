@@ -37,6 +37,8 @@ import { environment } from 'src/environments/environment';
 import { SearchBoxComponent } from './search/search-box/search-box.component';
 import { SearchHitsComponent } from './search/search-hits/search-hits.component';
 import { CoinInfoComponent } from './coin-info/coin-info.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 const authConfig = {
   forms: {
@@ -149,6 +151,8 @@ const authConfig = {
     NbCardModule,
     NbListModule,
     NgAisModule.forRoot(),
+    GraphQLModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

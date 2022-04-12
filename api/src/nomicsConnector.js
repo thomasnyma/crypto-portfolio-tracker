@@ -40,7 +40,7 @@ class NomicsConnector {
     const res = await this.client('/currencies/ticker', {
       params: { ids: currency },
     });
-    return res.data;
+    return res.data[0];
   }
 
   async getAllCoins() {
