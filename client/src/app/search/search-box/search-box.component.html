@@ -1,0 +1,65 @@
+<div [class]="cx()">
+  <form [class]="cx('form')" novalidate (submit)="handleSubmit($event)">
+    <nb-form-field
+      [nbPopover]="templateRef"
+      nbPopoverPlacement="bottom"
+      nbPopoverAdjustment="noop"
+      nbPopoverTrigger="focus"
+    >
+      <input
+        nbInput
+        [class]="cx('input')"
+        autocapitalize="off"
+        autocorrect="off"
+        placeholder="{{ placeholder }}"
+        role="textbox"
+        spellcheck="false"
+        type="text"
+        [value]="state.query"
+        (input)="handleChange($any($event.target).value)"
+        (focus)="focus.emit($event)"
+        (blur)="blur.emit($event)"
+        #searchBox
+      />
+      <button
+        nbSuffix
+        nbButton
+        ghost
+        [class]="cx('submit')"
+        type="submit"
+        title="{{ submitTitle }}"
+        *ngIf="state.query === ''"
+      >
+        <nb-icon icon="search-outline">
+          pack="eva" [attr.aria-label]="'search'">
+        </nb-icon>
+      </button>
+      <button
+        nbSuffix
+        nbButton
+        ghost
+        [class]="cx('reset')"
+        type="reset"
+        title="{{ resetTitle }}"
+        (click)="handleReset($event)"
+        *ngIf="state.query !== ''"
+      >
+        <nb-icon icon="close-outline">
+          pack="eva" [attr.aria-label]="'reset'">
+        </nb-icon>
+      </button>
+    </nb-form-field>
+  </form>
+</div>
+
+<ng-template #templateRef>
+  <nb-list>
+    <nb-list-item
+      style="cursor: pointer"
+      *ngFor="let hit of hits"
+      (click)="NavigateToCoin(hit.currency)"
+      ><img class="coin-logo" [src]="hit.logo_url" [alt]="hit.name" />
+      {{ hit.currency }} - {{ hit.name }}</nb-list-item
+    >
+  </nb-list>
+</ng-template>

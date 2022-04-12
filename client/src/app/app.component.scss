@@ -1,3 +1,5 @@
-* {
-  height: 100vh;
+:host {
+  ::ng-deep nb-layout-header nav {
+    justify-content: space-between !important;
+  }
 }

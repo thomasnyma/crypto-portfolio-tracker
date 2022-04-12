@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { NbAuthService, NbAuthToken } from '@nebular/auth';
+import { NbMenuItem } from '@nebular/theme';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,25 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Crypto Portfolio Tracker';
+  user: any;
+  items: NbMenuItem[] = [
+    { title: 'Profile', link: 'profile' },
+    { title: 'Log out', link: 'auth/logout' },
+  ];
+  isAuthenticated?: boolean;
 
-  constructor() {}
+  constructor(private authService: NbAuthService) {
+    this.authService
+      .onAuthenticationChange()
+      .subscribe((authenticated: boolean) => {
+        if (authenticated) {
+          this.isAuthenticated = true;
+          this.authService.getToken().subscribe((token: NbAuthToken) => {
+            this.user = token.getPayload();
+          });
+        } else this.isAuthenticated = false;
+      });
+  }
+
+  // this.isAuthenticated$ = this.authService.isAuthenticated();
 }
